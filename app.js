@@ -15,8 +15,7 @@ const users = [
 const tweets = [
     {
         "username": "pablo",
-        "avatar": "https://cloud.estacaonerd.com/wp-content/uploads/2019/07/17091456/rick-and-morty-4-temp1.jpg",
-        "tweet": "ldsbnljb"
+        "tweet": "Backend yaay!"
     },
     {
         "username": "bobesponja",
@@ -47,7 +46,9 @@ app.post("/sign-up", (req, res) => {
 
 app.post("/tweets", (req, res) => {
 
-    const userName = req.headers.user
+    let userName
+
+    (req.headers.user) ? userName = req.headers.user : userName = req.body.username
 
     if(!userName || !req.body.tweet){
         res.status(400).send("Todos os campos são obrigatórios")
